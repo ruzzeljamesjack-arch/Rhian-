@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>💜 Our Purple Love — Rhian</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg1:#230532;
+      --bg2:#4b1966;
+      --glow:#cfa3ff;
+      --accent:#d391ff;
+      --card: rgba(255,255,255,0.04);
+      --glass: rgba(255,255,255,0.03);
+      --max:1040px;
+      font-family:'Poppins',system-ui,-apple-system,'Segoe UI',Roboto,Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(211,145,255,0.06), transparent),
+                  linear-gradient(180deg,var(--bg1) 0%, var(--bg2) 70%);
+      color:#fff;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      padding-bottom:70px;
+      overflow-x:hidden;
+    }
+
+    /* ENTRY */
+    .center-screen{
+      display:flex; align-items:center; justify-content:center; min-height:100vh; padding:28px;
+    }
+    .entry-card{
+      width:100%; max-width:520px; text-align:center; background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      padding:34px; border-radius:16px; box-shadow:0 18px 60px rgba(0,0,0,0.55); border:1px solid rgba(255,255,255,0.04);
+      position:relative; overflow:hidden;
+    }
+    .entry-card h1{margin:0 0 8px;font-size:24px; letter-spacing:0.6px}
+    .entry-card p{margin:0 0 14px;opacity:0.95}
+    .entry-card input{
+      width:100%; padding:14px 16px; border-radius:12px; border:1px solid rgba(255,255,255,0.07);
+      background:transparent; color:#fff; outline:none; margin-bottom:14px; font-size:15px;
+    }
+    .entry-card button{
+      width:100%; padding:12px 14px; border-radius:12px; border:0; cursor:pointer;
+      background:linear-gradient(90deg,var(--glow), var(--accent)); color:var(--bg1); font-weight:800;
+      box-shadow:0 10px 30px rgba(139,92,230,0.15);
+    }
+    .entry-card .hint{margin-top:10px;font-size:13px;opacity:0.86}
+    .entry-card .small-glow{
+      position:absolute; right:-60px; top:-60px; width:240px; height:240px; background:radial-gradient(circle, rgba(211,145,255,0.14), transparent 40%); transform:rotate(25deg);
+    }
+    .hearts-bg{position:fixed; inset:0; pointer-events:none; background-image:
+      radial-gradient(circle at 12% 8%, rgba(255,255,255,0.02), transparent 10%),
+      radial-gradient(circle at 88% 92%, rgba(211,145,255,0.02), transparent 10%);}
+
+    /* MAIN */
+    .hidden{display:none}
+    .topbar{display:flex; justify-content:space-between; align-items:center; gap:12px; max-width:var(--max); margin:20px auto; padding:0 16px;}
+    .brand{display:flex; align-items:center; gap:12px}
+    .logo{
+      width:54px;height:54px;border-radius:12px;background:linear-gradient(135deg,var(--glow), rgba(161,120,255,0.55));
+      display:flex; align-items:center; justify-content:center; font-weight:800; color:var(--bg1); box-shadow:0 8px 30px rgba(0,0,0,0.4);
+    }
+    .brand h2{margin:0;font-size:18px}
+    .sub{margin:4px 0 0;font-size:13px;opacity:0.9}
+    .controls button{margin-left:8px;padding:8px 12px;border-radius:10px;border:0;cursor:pointer;background:linear-gradient(90deg,var(--accent), #a17fff); color:var(--bg1); font-weight:700}
+
+    /* Timer (decorative - no date) */
+    .timer-card{max-width:var(--max); margin:18px auto; padding:14px 16px; border-radius:14px; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06)); display:flex; justify-content:space-between; align-items:center; gap:12px; box-shadow:0 8px 30px rgba(0,0,0,0.35)}
+    .timer-left{display:flex; gap:12px; align-items:center}
+    .infinity{
+      font-size:34px; width:84px; height:64px; display:flex; align-items:center; justify-content:center; border-radius:12px;
+      background:linear-gradient(135deg, rgba(255,255,255,0.03), rgba(211,145,255,0.04)); box-shadow:0 6px 22px rgba(0,0,0,0.35);
+    }
+    .timer-text{font-weight:700}
+    .timer-counter{font-size:18px; opacity:0.92}
+
+    /* HERO */
+    .hero{max-width:var(--max); margin:22px auto; display:grid; grid-template-columns: 1fr 360px; gap:18px; padding:18px; align-items:start}
+    .hero-left{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.05)); padding:18px; border-radius:14px; min-height:220px; backdrop-filter: blur(6px); box-shadow:0 12px 40px rgba(0,0,0,0.45)}
+    #typewriterTitle{margin:0 0 10px; font-size:20px; font-weight:700}
+    .letter{white-space:pre-wrap; font-size:15px; opacity:0.96; min-height:90px; padding-right:6px}
+    .hero-right{display:flex; flex-direction:column; gap:12px; align-items:center}
+    .song-card{width:100%; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:14px; border-radius:12px; text-align:center; box-shadow:0 8px 26px rgba(0,0,0,0.35)}
+    .song-title{font-weight:800}
+    .song-artist{opacity:0.9; font-size:13px}
+    .song-actions button{margin-top:8px;padding:8px 12px;border-radius:8px;border:0;cursor:pointer;background:linear-gradient(90deg,var(--glow), #b18bff); color:var(--bg1); font-weight:800}
+    .polaroid-sample{margin-top:6px; text-align:center}
+    .polaroid-sample img{width:140px; height:110px; object-fit:cover; border-radius:10px; box-shadow:0 8px 30px rgba(0,0,0,0.45)}
+    .polaroid-sample .caption{margin-top:8px; font-size:13px}
+
+    /* GALLERY polaroid wall */
+    .gallery{max-width:var(--max); margin:24px auto; padding:16px; border-radius:12px; background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.05))}
+    .polaroid-wall{display:flex; gap:16px; flex-wrap:wrap; justify-content:center}
+    .polaroid{width:220px; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06)); padding:12px; border-radius:12px; text-align:center; transform: rotate(-3deg); box-shadow:0 12px 34px rgba(0,0,0,0.45)}
+    .polaroid:nth-child(2){transform:rotate(4deg)}
+    .polaroid img, .polaroid video{width:100%; height:150px; object-fit:cover; border-radius:10px}
+    .polaroid-caption{margin-top:10px; font-weight:700}
+
+    /* Timeline */
+    .timeline{max-width:var(--max); margin:20px auto; padding:16px; border-radius:12px; background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.05))}
+    .timeline ul{margin:0;padding:0; list-style:none}
+    .timeline li{padding:10px 0; border-bottom:1px dashed rgba(255,255,255,0.03); font-weight:600}
+
+    /* Promises */
+    .promises{max-width:var(--max); margin:20px auto; padding:16px; border-radius:12px; background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.05))}
+    .promises ul{list-style: none; padding:0}
+    .promises li{padding:8px 0; font-weight:700}
+
+    /* Footer */
+    .footer{max-width:var(--max); margin:28px auto; text-align:center; opacity:0.95}
+
+    /* small screens */
+    @media (max-width:920px){
+      .hero{grid-template-columns:1fr; padding:12px}
+      .hero-right{order:2}
+      .polaroid{width:46%}
+    }
+    @media (max-width:520px){
+      .polaroid{width:100%}
+      .controls button{padding:8px 9px}
+    }
+
+    /* shake animation */
+    .shake { animation: shakeX .5s; }
+    @keyframes shakeX {
+      0%{ transform: translateX(0) }
+      25%{ transform: translateX(-6px) }
+      50%{ transform: translateX(6px) }
+      75%{ transform: translateX(-6px) }
+      100%{ transform: translateX(0) }
+    }
+
+    /* small floating heart style used by surprise */
+    .heart-dot{
+      width:28px;height:28px;border-radius:8px; transform:rotate(45deg);
+      background:linear-gradient(135deg, rgba(255,255,255,0.95), rgba(211,145,255,0.95));
+      box-shadow:0 8px 22px rgba(0,0,0,0.35);
+    }
+  </style>
+</head>
+<body>
+  <!-- ENTRY/GATE SCREEN -->
+  <div id="entry" class="center-screen" aria-hidden="false">
+    <div class="entry-card" role="dialog" aria-label="Memory gate">
+      <div class="small-glow" aria-hidden="true"></div>
+      <h1>Hi Rhian 💜</h1>
+      <p>Type your name to open our memories.</p>
+      <input id="nameInput" type="text" placeholder="Type your name..." autocomplete="off" />
+      <button id="enterBtn" aria-label="Open memories">Open</button>
+      <p class="hint">Hint: just your love — say it softly ✨</p>
+    </div>
+    <div class="hearts-bg" aria-hidden="true"></div>
+  </div>
+
+  <!-- MAIN SITE (hidden until correct name entered) -->
+  <main id="site" class="hidden" aria-hidden="true">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo">💜</div>
+        <div>
+          <h2 id="siteTitle">Our Purple Love — Rhian</h2>
+          <div class="sub">Distance? just geography. Love is everywhere.</div>
+        </div>
+      </div>
+      <div class="controls" role="toolbar" aria-label="Controls">
+        <button id="musicToggle" title="Play/Pause background music">Play Music</button>
+        <button id="surpriseBtn" title="Surprise">Surprise ✨</button>
+      </div>
+    </header>
+
+    <!-- Love Timer (no date shown) -->
+    <section class="timer-card" aria-live="polite">
+      <div class="timer-left">
+        <div class="infinity">∞</div>
+        <div>
+          <div class="timer-text">Together — Forever</div>
+          <div id="elapsed" class="timer-counter">00d 00:00:00</div>
+        </div>
+      </div>
+      <div style="opacity:0.9; font-weight:700; text-align:right;">
+        <div style="font-size:13px">A little symbol of us</div>
+      </div>
+    </section>
+
+    <!-- HERO + Typewriter Letter -->
+    <section class="hero" aria-labelledby="letter-heading">
+      <div class="hero-left" id="letter-panel">
+        <h3 id="typewriterTitle" style="margin-bottom:6px;"></h3>
+        <div id="typewriterLetter" class="letter" aria-live="polite"></div>
+      </div>
+
+      <aside class="hero-right" aria-label="Song and sample">
+        <div class="song-card" aria-label="Song dedication">
+          <div class="song-meta">
+            <div class="song-title">Perfect</div>
+            <div class="song-artist"></div>
+          </div>
+          <div class="song-actions">
+            <button id="playSongBtn" aria-label="Play song">Play Song</button>
+          </div>
+        </div>
+
+        <div class="polaroid-sample" aria-hidden="false" style="opacity:0.98">
+          <img src="3.jpg" alt="Sample memory photo" onerror="this.style.opacity=0.45" />
+          <div class="caption">Our favorite day</div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- Media Gallery (polaroid wall) -->
+    <section class="gallery" aria-label="Memory gallery">
+      <h3 style="text-align:center; margin-top:6px">Memories 📸🎞️</h3>
+      <div id="polaroidWall" class="polaroid-wall" role="list" aria-label="Photos and videos">
+        <div class="polaroid" role="listitem">
+          <img src="p1.jpg" alt="memory 1" onerror="this.style.opacity=0.35" />
+          <div class="polaroid-caption">My Love</div>
+        </div>
+        <div class="polaroid" role="listitem">
+          <img src="p2.jpg" alt="memory 2" onerror="this.style.opacity=0.35" />
+          <div class="polaroid-caption">Cute</div>
+        </div>
+        <div class="polaroid" role="listitem">
+          <video src="vd.mp4" controls onerror="this.style.opacity=0.35"></video>
+          <div class="polaroid-caption">Memoris</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Timeline of special dates (text-only; no explicit date requirement enforced here) -->
+    <section class="timeline" aria-label="Timeline">
+      <h3 style="text-align:center; margin-top:6px">Special Moments</h3>
+      <ul>
+        <li>We met — small sparks, big smiles</li>
+        <li>First long call — midnight and memories</li>
+        <li>Virtual surprises — laughter through screens</li>
+        <li>Anniversaries — collected in little pockets of time</li>
+      </ul>
+    </section>
+
+    <!-- Messages / promises -->
+    <section class="promises" aria-label="Promises">
+      <h3 style="text-align:center; margin-top:6px">My Promises to You 💌</h3>
+      <ul>
+        <li>I'll always choose you, kahit ilang oras pa ang pagitan.</li>
+        <li>I'll be your safe place over the phone and in person.</li>
+        <li>I'll celebrate your wins and hold you through the hard days.</li>
+      </ul>
+    </section>
+
+    <footer class="footer" role="contentinfo">
+      <p>Made with ❤️ and a thousand purple sunsets — From your Ruzzel</p>
+    </footer>
+
+    <!-- Audio elements -->
+    <audio id="bgMusic" loop preload="auto">
+      <source src="Perfect.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="songClip" preload="auto">
+      <source src="assets/song_dedication.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="surpriseSfx" preload="auto">
+      <source src="assets/surprise.wav" type="audio/wav">
+    </audio>
+  </main>
+
+  <script>
+    /* Single-file interactive script */
+    const LOVENAME = "Rhian"; // gate name
+    const ENTRY = document.getElementById('entry');
+    const SITE = document.getElementById('site');
+    const nameInput = document.getElementById('nameInput');
+    const enterBtn = document.getElementById('enterBtn');
+
+    const bgMusic = document.getElementById('bgMusic');
+    const musicToggle = document.getElementById('musicToggle');
+    const songClip = document.getElementById('songClip');
+    const playSongBtn = document.getElementById('playSongBtn');
+    const surpriseBtn = document.getElementById('surpriseBtn');
+
+    const typewriterTitle = document.getElementById('typewriterTitle');
+    const typewriterLetter = document.getElementById('typewriterLetter');
+    const elapsed = document.getElementById('elapsed');
+
+    /* Typewriter content */
+    const TYPE_TITLE = [
+      "A letter just for you…",
+      "Distance can't hold us back.",
+      "Open your heart — I'm there."
+    ];
+    const LETTER_LINES = [
+      "Hi Rhian 💜 Ginawa ko talaga to para sayo,love.Hindi pa siya tapos kasi medyo ang dami pang error,pero promise,pagandahin ko pa.Sorry kung hindi pa perfect ngayon,Baby ko. Pero sana ma-appreciati mo parin kahit ganito lang love.Ginawa ko to galing sa puso ko para sayo love.Love mahal na mahal kita,at gusto ko lang mapasaya ka kahit sa sampleng ganitong paraan. I love you Love mahal na mahal kita Love",
+    ];
+
+    /* Entry logic */
+    enterBtn.addEventListener('click', tryEnter);
+    nameInput.addEventListener('keydown', (e)=> { if(e.key === 'Enter') tryEnter(); });
+
+    function tryEnter(){
+      const v = nameInput.value.trim();
+      if(!v){ shake(nameInput); return; }
+      if(v.toLowerCase() === LOVENAME.toLowerCase()){
+        openSite();
+      } else {
+        nameInput.value = "";
+        nameInput.placeholder = "Hindi tumama — subukan ulit 💫";
+        shake(nameInput);
+      }
+    }
+    function shake(el){
+      el.classList.remove('shake');
+      void el.offsetWidth;
+      el.classList.add('shake');
+      setTimeout(()=>el.classList.remove('shake'),700);
+    }
+
+    /* Open site: show main, start effects */
+    function openSite(){
+      ENTRY.classList.add('hidden');
+      ENTRY.setAttribute('aria-hidden','true');
+      SITE.classList.remove('hidden');
+      SITE.setAttribute('aria-hidden','false');
+      document.title = `Our Purple Love — ${LOVENAME}`;
+
+      startElapsedCounter();
+      startRotatingTitle();
+      startTypewriterLetter();
+      tryAutoplayMusic();
+    }
+
+    /* Elapsed counter - decorative (counts since open) */
+    let startTime = Date.now();
+    function pad(n){ return n.toString().padStart(2,'0'); }
+    function startElapsedCounter(){
+      startTime = Date.now();
+      function update(){
+        const now = Date.now();
+        const diff = Math.max(0, now - startTime);
+        const sec = Math.floor(diff/1000);
+        const days = Math.floor(sec / (24*3600));
+        const hours = Math.floor((sec % (24*3600)) / 3600);
+        const mins = Math.floor((sec % 3600) / 60);
+        const s = sec % 60;
+        elapsed.textContent = `${pad(days)}d ${pad(hours)}:${pad(mins)}:${pad(s)}`;
+      }
+      update();
+      setInterval(update, 1000);
+    }
+
+    /* Typewriter helpers */
+    function typeText(el, text, speed=28){
+      return new Promise((res)=>{
+        let i=0;
+        const t = setInterval(()=>{
+          if(i < text.length){ el.textContent += text[i++]; }
+          else { clearInterval(t); setTimeout(res, 500); }
+        }, speed);
+      });
+    }
+
+    async function startTypewriterLetter(){
+      typewriterLetter.textContent = "";
+      for(let i=0;i<LETTER_LINES.length;i++){
+        // append each line with a newline
+        const current = typewriterLetter.textContent ? (typewriterLetter.textContent + "\n" + LETTER_LINES[i]) : LETTER_LINES[i];
+        await typeText(typewriterLetter, current, 16);
+      }
+    }
+
+    /* Rotating small title */
+    let titleIdx = 0;
+    function startRotatingTitle(){
+      function show(i){
+        typewriterTitle.textContent = "";
+        const text = TYPE_TITLE[i % TYPE_TITLE.length];
+        let j=0;
+        const t = setInterval(()=>{
+          if(j < text.length) typewriterTitle.textContent += text[j++];
+          else { clearInterval(t); setTimeout(()=> show(i+1), 1500); }
+        }, 30);
+      }
+      show(0);
+    }
+
+    /* Music controls */
+    musicToggle && musicToggle.addEventListener('click', ()=>{
+      if(bgMusic.paused){ bgMusic.play().catch(()=>{}); musicToggle.textContent = "Pause Music"; }
+      else { bgMusic.pause(); musicToggle.textContent = "Play Music"; }
+    });
+
+    function tryAutoplayMusic(){
+      bgMusic.volume = 0.85;
+      bgMusic.play().then(()=> { if(musicToggle) musicToggle.textContent = "Pause Music"; }).catch(()=> { if(musicToggle) musicToggle.textContent = "Play Music"; });
+    }
+
+    /* Song dedication play */
+    playSongBtn && playSongBtn.addEventListener('click', ()=>{
+      if(songClip.paused){
+        songClip.currentTime = 0;
+        songClip.play().catch(()=>{});
+        playSongBtn.textContent = "Pause Song";
+        if(!bgMusic.paused) bgMusic.pause();
+        songClip.onended = ()=> { playSongBtn.textContent = "Play Song"; tryAutoplayMusic(); };
+      } else {
+        songClip.pause();
+        playSongBtn.textContent = "Play Song";
+        tryAutoplayMusic();
+      }
+    });
+
+    /* Surprise: floating hearts + sfx */
+    surpriseBtn && surpriseBtn.addEventListener('click', runSurprise);
+    function runSurprise(){
+      const sfx = document.getElementById('surpriseSfx');
+      sfx && sfx.play().catch(()=>{});
+      const container = document.createElement('div');
+      container.style.position = 'fixed';
+      container.style.left = '0'; container.style.top = '0'; container.style.right = '0'; container.style.bottom = '0';
+      container.style.pointerEvents = 'none'; container.style.zIndex = 9999;
+      document.body.appendChild(container);
+
+      for(let i=0;i<22;i++){
+        const h = document.createElement('div');
+        const size = 12 + Math.random()*34;
+        h.className = 'heart-dot';
+        h.style.width = size + 'px';
+        h.style.height = size + 'px';
+        h.style.left = (6 + Math.random()*88) + '%';
+        h.style.bottom = '-60px';
+        h.style.position = 'absolute';
+        h.style.opacity = 0.98;
+        container.appendChild(h);
+
+        const anim = h.animate([
+          { transform: `translateY(0) rotate(45deg) scale(1)`, opacity:1 },
+          { transform: `translateY(-520px) rotate(${120 + Math.random()*160}deg) scale(0.9)`, opacity:0 }
+        ], { duration: 2600 + Math.random()*2000, easing: 'cubic-bezier(.2,.9,.3,1)'});
+        anim.onfinish = ()=> h.remove();
+      }
+      setTimeout(()=> container.remove(), 6000);
+    }
+
+    /* keyboard shortcuts: 's' for surprise, 'm' for music toggle */
+    window.addEventListener('keydown', (e)=>{
+      if(SITE.classList.contains('hidden')) return;
+      if(e.key === 's' || e.key === 'S') runSurprise();
+      if(e.key === 'm' || e.key === 'M') {
+        if(bgMusic.paused) bgMusic.play().catch(()=>{}); else bgMusic.pause();
+      }
+    });
+
+    /* accessibility: focus the input */
+    nameInput.focus();
+
+    /* small graceful fallback if assets missing: nothing breaks */
+    // (no further action needed)
+  </script>
+</body>
+</html>
